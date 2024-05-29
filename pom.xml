@@ -99,6 +99,16 @@
             <artifactId>spring-boot-starter-mail</artifactId>
             <version>3.1.5</version>
         </dependency>
+        <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web-services</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -139,6 +149,31 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.sun.xml.ws</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<packageName>com.example.consumingwebservice.wsdl</packageName>
+					<wsdlUrls>
+						<wsdlUrl>http://localhost:8080/ws/countries.wsdl</wsdlUrl>
+					</wsdlUrls>
+					<sourceDestDir>${sourcesDir}</sourceDestDir>
+					<destDir>${classesDir}</destDir>
+					<extension>true</extension>
+				</configuration>
+			</plugin>
         </plugins>
     </build>
 
