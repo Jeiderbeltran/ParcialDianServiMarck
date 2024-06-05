@@ -4,6 +4,9 @@ import java.util.Map;
 
 import org.mycompany.servimark.core.CoreExternalAPI;
 import org.mycompany.servimark.core.dto.DepartamentDTO;
+import org.mycompany.servimark.facturacion.facturacionExternalApi;
+import org.mycompany.servimark.facturacion.model.FacturaElectronica;
+import org.mycompany.servimark.facturacion.model.RespuestaEnvioFactura;
 import org.mycompany.servimark.order.OrderDTO;
 import org.mycompany.servimark.order.OrderExternalAPI;
 import org.mycompany.servimark.service.ServiceDTO;
@@ -29,15 +32,18 @@ public class GatewayManagement {
     private OrderExternalAPI orderExternalAPI;
     private UserExternalAPI userExternalAPI;
     private ServiceExternalAPI serviceExternalAPI;
+    private facturacionExternalApi facturacionExternal;
 
     public GatewayManagement(OrderExternalAPI orderExternalAPI,
                              CoreExternalAPI coreExternalAPI,
                              UserExternalAPI userExternalAPI,
-                             ServiceExternalAPI serviceExternalAPI) {
+                             ServiceExternalAPI serviceExternalAPI,
+                             facturacionExternalApi facturacionExternal) {
         this.orderExternalAPI = orderExternalAPI;
         this.coreExternalAPI = coreExternalAPI;
         this.userExternalAPI = userExternalAPI;
         this.serviceExternalAPI = serviceExternalAPI;
+        this.facturacionExternal= facturacionExternal;
     }
 
     @PostMapping("/departament")
@@ -68,6 +74,11 @@ public class GatewayManagement {
     @PostMapping("/order")
     public ResponseEntity<Map<String, Object>> saveOrder(@Valid @RequestBody OrderDTO orderDTO) {
         return orderExternalAPI.saveOrder(orderDTO);
+    }
+
+    @PostMapping("/enviar-Factura")
+    public ResponseEntity<RespuestaEnvioFactura> enviarFactura(@RequestBody FacturaElectronica factura) {
+        return facturacionExternal.enviarFactura(factura);
     }
 
 }
