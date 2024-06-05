@@ -24,7 +24,5 @@ public class RespuestaEnvioFactura {
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
-
-    // Otros campos si son necesarios
     
 }

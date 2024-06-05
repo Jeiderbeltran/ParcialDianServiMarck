@@ -7,5 +7,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface facturacionExternalApi {
 
-    ResponseEntity<RespuestaEnvioFactura> enviarFactura(FacturaElectronica factura);
+    RespuestaEnvioFactura enviarFactura(FacturaElectronica factura);
 }

@@ -53,6 +53,4 @@ public class FacturaElectronica {
     public void setTotal(double total) {
         this.total = total;
     }
-
-    // Otros campos y métodos si son necesarios
 }

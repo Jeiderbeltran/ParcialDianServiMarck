@@ -77,7 +77,7 @@ public class GatewayManagement {
     }
 
     @PostMapping("/enviar-Factura")
-    public ResponseEntity<RespuestaEnvioFactura> enviarFactura(@RequestBody FacturaElectronica factura) {
+    public RespuestaEnvioFactura enviarFactura(@RequestBody FacturaElectronica factura) {
         return facturacionExternal.enviarFactura(factura);
     }
 
